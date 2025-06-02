@@ -9,7 +9,7 @@ and get AI-powered verification.
 import os
 import logging
 import asyncio
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from fastapi import FastAPI, Request, HTTPException, BackgroundTasks
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
@@ -67,10 +67,10 @@ def load_last_processed_time():
                 return datetime.fromisoformat(timestamp_str)
         else:
             # Default to current time to avoid processing old messages on first run
-            return datetime.now()
+            return datetime.now(timezone.utc)
     except Exception as e:
         logger.warning(f"Could not load last processed time: {e}")
-        return datetime.now()
+        return datetime.now(timezone.utc)
 
 def save_last_processed_time(timestamp: datetime):
     """Save the last processed timestamp to file."""
@@ -135,7 +135,7 @@ async def root():
         "status": "running",
         "version": "1.0.0",
         "integration": "WhatsApp MCP",
-        "timestamp": datetime.now().isoformat()
+        "timestamp": datetime.now(timezone.utc).isoformat()
     }
 
 @app.get("/health")
@@ -160,7 +160,7 @@ async def health_check():
                 "whatsapp_mcp": "healthy" if mcp_healthy else "unhealthy",
                 "gemini": "configured" if settings.GEMINI_API_KEY else "not_configured"
             },
-            "timestamp": datetime.now().isoformat()
+            "timestamp": datetime.now(timezone.utc).isoformat()
         }
     except Exception as e:
         logger.error(f"Health check failed: {e}")
@@ -497,7 +497,7 @@ async def send_message_endpoint(request: Request):
             "status": "success" if success else "failed",
             "phone_number": phone_number,
             "message": message,
-            "timestamp": datetime.now().isoformat()
+            "timestamp": datetime.now(timezone.utc).isoformat()
         }
     except Exception as e:
         logger.error(f"Manual message sending error: {e}")
@@ -518,7 +518,7 @@ async def send_reminder_endpoint(request: Request):
         return {
             "status": "success",
             "reminders_sent": sent_count,
-            "timestamp": datetime.now().isoformat()
+            "timestamp": datetime.now(timezone.utc).isoformat()
         }
     except Exception as e:
         logger.error(f"Reminder sending error: {e}")
