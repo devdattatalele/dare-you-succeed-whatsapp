@@ -252,7 +252,7 @@ def get_new_messages_from_db(since_timestamp: datetime) -> list:
     """
     try:
         # Path to the WhatsApp MCP database
-        db_path = "/Users/dev16/Documents/Test project/dare-you-succeed 3/whatsapp-mcp/whatsapp-bridge/store/messages.db"
+        db_path = "../whatsapp-mcp/whatsapp-bridge/store/messages.db"
         
         if not os.path.exists(db_path):
             logger.warning(f"WhatsApp MCP database not found: {db_path}")
