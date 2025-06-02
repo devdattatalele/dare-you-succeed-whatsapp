@@ -1,0 +1,35 @@
+# FastAPI and server dependencies
+fastapi==0.104.1
+uvicorn[standard]==0.24.0
+pydantic==2.5.0
+pydantic-settings==2.1.0
+
+# Database and storage
+supabase==2.3.0
+postgrest==0.13.2
+gotrue==2.0.0
+
+# HTTP client for API calls - compatible with supabase
+aiohttp==3.9.1
+httpx>=0.24.0,<0.25.0
+
+# Image processing for AI verification
+Pillow>=9.0.0
+
+# Environment and configuration
+python-dotenv==1.0.0
+
+# Date and time parsing
+python-dateutil==2.8.2
+
+# Logging and monitoring
+structlog==23.2.0
+
+# Development and testing (optional)
+pytest==7.4.3
+pytest-asyncio==0.21.1
+black==23.11.0
+flake8==6.1.0
+
+# Production server (optional)
+gunicorn==21.2.0 
