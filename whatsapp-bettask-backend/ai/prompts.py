@@ -90,7 +90,7 @@ Examples: "hi", "hello", "thanks", "how are you", casual conversation
 
 For **create_task**, extract:
 - "goal": Clean up their words into a clear goal
-- "timeframe": When they want to do it (if mentioned)  
+- "timeframe": When they want to do it (if mentioned)
 - "mentioned_amount": Any money amount they suggested
 
 For **add_money**, extract:

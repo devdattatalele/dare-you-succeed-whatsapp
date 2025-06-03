@@ -922,7 +922,7 @@ Respond ONLY in this exact JSON format:
                 
         except Exception as e:
             logger.error(f"Error generating response: {e}")
-        
+            
         # Improved fallback responses based on context
         balance = user_context.get('balance', 0)
         active_challenges = user_context.get('active_challenges', 0)
@@ -974,7 +974,7 @@ Respond ONLY in this exact JSON format:
                 # Skills/Hobbies
                 "guitar", "piano", "music", "singing", "drawing", "painting", "art", "photography", "dancing",
                 "language", "spanish", "french", "german", "japanese",
-                
+            
                 # Time indicators (often paired with goals)
                 "today", "tomorrow", "tonight", "morning", "evening", "week", "daily", "every day"
             ]
